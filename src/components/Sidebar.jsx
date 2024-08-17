@@ -1,9 +1,14 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
+	const navigate = useNavigate();
+	const handleLogout = () => {
+		localStorage.clear();
+		navigate("/login");
+	};
 	return (
 		<aside className="py-6 w-[240px] bg-white h-screen fixed">
-			<div className="flex h-full items-center justify-between flex-col w-full">
+			<div className="flex h-full items-center justify-between flex-col w-ful	l">
 				<div className="w-full text-center">
 					<p className="font-extrabold text-lg">
 						<span className="text-primary">Meow</span>Cafe
@@ -50,7 +55,10 @@ const Sidebar = () => {
 					</section>
 				</div>
 				<div className="w-full px-6">
-					<button className="p-3 flex w-full items-center rounded-md">
+					<button
+						className="p-3 flex w-full items-center rounded-md"
+						onClick={handleLogout}
+					>
 						<i className="ri-logout-circle-line mr-4 text-lg"></i>
 						<span className="font-semibold">Logout</span>
 					</button>

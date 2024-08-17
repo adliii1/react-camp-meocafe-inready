@@ -1,4 +1,21 @@
+import { useState } from "react";
+import { useAuth } from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+
 const Login = () => {
+	const { login } = useAuth();
+	const [data, setData] = useState();
+
+	const navigate = useNavigate();
+	const handleChange = (event) => {
+		setData((prev) => ({ ...prev, [event.target.name]: event.target.value }));
+	};
+
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		login(data).then(() => navigate("/"));
+	};
+
 	return (
 		<div className="h-screen bg-primary">
 			<div className="bg-[url('../assets/authBg.png')] h-full bg-center bg-no-repeat flex justify-center items-center">
@@ -11,7 +28,9 @@ const Login = () => {
 						<div className="flex flex-col text-left">
 							<label htmlFor="email">Email Address</label>
 							<input
-								type="email"
+								onChange={handleChange}
+								name="email"
+								// type="email"
 								className="mt-4 bg-[#F1F4F9] p-2 border-[#D8D8D8] border rounded-lg text-[#A6A6A6] outline-none"
 								id="email"
 								required
@@ -23,7 +42,9 @@ const Login = () => {
 								<a href="">Forget Password?</a>
 							</div>
 							<input
+								onChange={handleChange}
 								type="password"
+								name="password"
 								className="mt-4 bg-[#F1F4F9] p-2 border-[#D8D8D8] border rounded-lg text-[#A6A6A6] outline-none"
 								id="password"
 								required
@@ -44,6 +65,7 @@ const Login = () => {
 						form="form"
 						type="submit"
 						className="bg-primary inline py-3 font-bold text-white rounded-lg mt-10"
+						onClick={handleSubmit}
 					>
 						Sign In
 					</button>

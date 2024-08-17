@@ -2,12 +2,14 @@ import { createContext, useContext } from "react";
 import Button from "../components/ui/Button";
 import Child from "./Child";
 
-const PlaygroundContext = createContext();
+export const PlaygroundContext = createContext();
 
-const PlaygroundProvider = ({ children }) => {
-	const a = 1;
+export const PlaygroundProvider = ({ children }) => {
+	const value = {
+		a: 1,
+	};
 	return (
-		<PlaygroundContext.Provider value={a}>
+		<PlaygroundContext.Provider value={value}>
 			{children}
 		</PlaygroundContext.Provider>
 	);

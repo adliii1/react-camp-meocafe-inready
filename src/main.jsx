@@ -9,49 +9,61 @@ import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/404";
 import EditProduct from "./pages/editProduct";
 import AddProduct from "./pages/addProduct";
-import Playground from "./pages/Playground";
 import Login from "./pages/Login";
+import { AuthProvider } from "./providers/AuthProvider";
+import ProtectedLayout from "./layouts/ProtectedLayout";
+import Landing from "./pages/Landing";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <App />,
+		element: <ProtectedLayout />,
 		children: [
 			{
-				path: "/",
-				element: <Dashboard />,
-			},
-			{
-				path: "products",
+				path: "",
+				element: <App />,
 				children: [
 					{
 						path: "",
-						element: <Products />,
+						element: <Dashboard />,
 					},
 					{
-						path: "addProduct",
-						element: <AddProduct />,
+						path: "products",
+						children: [
+							{
+								path: "",
+								element: <Products />,
+							},
+							{
+								path: "addProduct",
+								element: <AddProduct />,
+							},
+							{
+								path: "editProduct/:id",
+								element: <EditProduct />,
+							},
+						],
 					},
 					{
-						path: "editProduct/:id",
-						element: <EditProduct />,
+						path: "orders",
+						element: <Orders />,
 					},
 				],
-			},
-			{
-				path: "orders",
-				element: <Orders />,
 			},
 		],
 	},
 	// {
+	// 	path: "/",
+	// 	element: <Landing />,
+	// },
+	// {
 	// 	path: "/playground",
 	// 	element: <Playground />,
 	// },
-	// {
-	// 	path: "login",
-	// 	element: <Login />,
-	// },
+	{
+		path: "login",
+		element: <Login />,
+	},
 	{
 		path: "*",
 		element: <NotFound />,
@@ -60,6 +72,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
-		<RouterProvider router={router} />
+		<AuthProvider>
+			<RouterProvider router={router} />
+		</AuthProvider>
 	</React.StrictMode>
 );
