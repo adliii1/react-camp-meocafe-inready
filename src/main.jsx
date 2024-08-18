@@ -17,14 +17,16 @@ import Landing from "./pages/Landing";
 const router = createBrowserRouter([
 	{
 		path: "/",
+		element: <Landing />,
+	},
+	{
 		element: <ProtectedLayout />,
 		children: [
 			{
-				path: "",
 				element: <App />,
 				children: [
 					{
-						path: "",
+						path: "dashboard",
 						element: <Dashboard />,
 					},
 					{
@@ -52,10 +54,6 @@ const router = createBrowserRouter([
 			},
 		],
 	},
-	// {
-	// 	path: "/",
-	// 	element: <Landing />,
-	// },
 	// {
 	// 	path: "/playground",
 	// 	element: <Playground />,

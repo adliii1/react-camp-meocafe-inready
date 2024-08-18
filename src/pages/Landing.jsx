@@ -7,7 +7,7 @@ const Landing = () => {
 	const navigate = useNavigate();
 	useEffect(() => {
 		if (user) {
-			navigate("/");
+			navigate("/dashboard");
 		} else {
 			navigate("/login");
 		}

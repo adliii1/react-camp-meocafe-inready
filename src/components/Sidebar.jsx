@@ -17,7 +17,7 @@ const Sidebar = () => {
 						<div className="relative px-6">
 							<NavLink
 								className="p-3 items-center flex w-full rounded-md"
-								to="/"
+								to="/dashboard"
 							>
 								<div className="bg-primary absolute rounded-e-lg top-0 left-0 h-full w-1 hidden"></div>
 								<i className="ri-dashboard-line mr-4 text-lg"></i>

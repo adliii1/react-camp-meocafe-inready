@@ -5,15 +5,15 @@ import { useEffect } from "react";
 import { useAuth } from "./hooks/useAuth";
 
 function App() {
-	const { user } = useAuth();
-	const navigate = useNavigate();
-	useEffect(() => {
-		if (user) {
-			navigate("/");
-		} else {
-			navigate("/login");	
-		}
-	}, [user, navigate]);
+	// const { user } = useAuth();
+	// const navigate = useNavigate();
+	// useEffect(() => {
+	// 	if (user) {
+	// 		navigate("/dashboard");
+	// 	} else {
+	// 		navigate("/login");	
+	// 	}
+	// }, [user, navigate]);
 	return (
 		<div>
 			<Layout>
